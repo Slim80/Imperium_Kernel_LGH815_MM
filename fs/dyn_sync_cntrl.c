@@ -112,18 +112,19 @@ static int dyn_fsync_fb_notifier_callback(struct notifier_block *self,
 	struct fb_event *evdata = data;
 	int *blank;
 
+	if (!dyn_fsync_active)
+		return 0;
+
 	if (event == FB_EVENT_BLANK) {
 		blank = evdata->data;
 
 		switch (*blank) {
 		case FB_BLANK_UNBLANK:
-		case FB_BLANK_VSYNC_SUSPEND:
 			dyn_sync_scr_suspended = false;
 			break;
 		case FB_BLANK_POWERDOWN:
 			dyn_sync_scr_suspended = true;
-			if (dyn_fsync_active)
-				dyn_fsync_suspend();
+			dyn_fsync_suspend();
 			break;
 		}
 	}
