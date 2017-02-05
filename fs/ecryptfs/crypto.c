@@ -136,7 +136,6 @@ static int crypto_sec_rng_get_bytes(u8 *data, unsigned int len)
 
 out:
 	return err;
-
 }
 #endif
 
