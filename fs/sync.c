@@ -197,8 +197,6 @@ SYSCALL_DEFINE1(syncfs, int, fd)
  */
 int vfs_fsync_range(struct file *file, loff_t start, loff_t end, int datasync)
 {
-	struct inode *inode = file->f_mapping->host;
-
 #ifdef CONFIG_DYNAMIC_FSYNC
 	if (likely(dyn_fsync_active && !dyn_sync_scr_suspended))
 		return 0;
@@ -392,8 +390,7 @@ SYSCALL_DEFINE4(sync_file_range, int, fd, loff_t, offset, loff_t, nbytes,
 		}
 
 		if (flags & SYNC_FILE_RANGE_WRITE) {
-			ret = __filemap_fdatawrite_range(mapping, offset, endbyte,
-							 WB_SYNC_NONE);
+			ret = filemap_fdatawrite_range(mapping, offset, endbyte);
 			if (ret < 0)
 				goto out_put;
 		}
