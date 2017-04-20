@@ -614,8 +614,8 @@ int get_limit(unsigned char Tx, unsigned char Rx, struct i2c_client client,
 
 	if (file_exist) {
 		filp_close(file, 0);
-		set_fs(old_fs);
 	}
+	set_fs(old_fs);
 
 	if (fwlimit)
 		release_firmware(fwlimit);
@@ -625,8 +625,8 @@ int get_limit(unsigned char Tx, unsigned char Rx, struct i2c_client client,
 exit:
 	if (file_exist) {
 		filp_close(file, 0);
-		set_fs(old_fs);
 	}
+	set_fs(old_fs);
 
 	if (fwlimit)
 		release_firmware(fwlimit);

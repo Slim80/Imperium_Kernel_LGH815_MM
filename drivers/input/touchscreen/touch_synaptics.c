@@ -5160,6 +5160,8 @@ static ssize_t show_fw_change_re_lpwg_cal_result(struct i2c_client *client,
 	}
 
 result_print:
+	mutex_unlock(&ts->pdata->thread_lock);
+
 	ret = snprintf(buf, PAGE_SIZE, "========RESULT=======\n");
 	ret += snprintf(buf + ret, PAGE_SIZE - ret,
 			"Result : %s\n\n", (panel_info & fw_check) ? "OK" : "NG");
