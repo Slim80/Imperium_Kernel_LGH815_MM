@@ -777,7 +777,7 @@ static struct ieee80211_rate __wl_rates[] = {
 #define wl_g_rates		(__wl_rates + 0)
 #define wl_g_rates_size	12
 
-static struct ieee80211_channel __wl_2ghz_channels[] = {
+static const struct ieee80211_channel __wl_2ghz_channels_default[] = {
 	CHAN2G(1, 2412, 0),
 	CHAN2G(2, 2417, 0),
 	CHAN2G(3, 2422, 0),
@@ -794,7 +794,7 @@ static struct ieee80211_channel __wl_2ghz_channels[] = {
 	CHAN2G(14, 2484, 0)
 };
 
-static struct ieee80211_channel __wl_5ghz_a_channels[] = {
+static const struct ieee80211_channel __wl_5ghz_a_channels_default[] = {
 	CHAN5G(34, 0), CHAN5G(36, 0),
 	CHAN5G(38, 0), CHAN5G(40, 0),
 	CHAN5G(42, 0), CHAN5G(44, 0),
@@ -811,6 +811,9 @@ static struct ieee80211_channel __wl_5ghz_a_channels[] = {
 	CHAN5G(157, 0),	CHAN5G(161, 0),
 	CHAN5G(165, 0)
 };
+
+static struct ieee80211_channel __wl_2ghz_channels[ARRAYSIZE(__wl_2ghz_channels_default)];
+static struct ieee80211_channel __wl_5ghz_a_channels[ARRAYSIZE(__wl_5ghz_a_channels_default)];
 
 static struct ieee80211_supported_band __wl_band_2ghz = {
 	.band = IEEE80211_BAND_2GHZ,
@@ -12839,6 +12842,11 @@ static int wl_construct_reginfo(struct bcm_cfg80211 *cfg, s32 bw_cap)
 		WL_ERR(("failed to allocate local buf\n"));
 		return -ENOMEM;
 	}
+
+	/* Initialize channels list */
+	memcpy(&__wl_2ghz_channels, &__wl_2ghz_channels_default, sizeof(__wl_2ghz_channels));
+	memcpy(&__wl_5ghz_a_channels, &__wl_5ghz_a_channels_default, sizeof(__wl_5ghz_a_channels));
+
 	list = (wl_uint32_list_t *)(void *)pbuf;
 	list->count = htod32(WL_NUMCHANSPECS);
 
