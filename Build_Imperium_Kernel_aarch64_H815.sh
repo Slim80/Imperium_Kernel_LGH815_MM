@@ -3,8 +3,8 @@ export KERNELDIR=`readlink -f .`
 export PARENT_DIR=`readlink -f ..`
 export ARCH=arm64
 export SUBARCH=arm64
-# export PATH=/home/slim80/Scrivania/Kernel/Compilatori/aarch64-linux-android-4.9/bin:$PATH
-export PATH=/home/slim80/Scrivania/Kernel/Compilatori/DespairFactor-aarch64-linux-android-4.9/bin:$PATH
+export PATH=/home/slim80/Scrivania/Kernel/Compilatori/aarch64-linux-android-4.9/bin:$PATH
+# export PATH=/home/slim80/Scrivania/Kernel/Compilatori/DespairFactor-aarch64-linux-android-4.9/bin:$PATH
 export CROSS_COMPILE=aarch64-linux-android-
 export KCONFIG_NOTIMESTAMP=true
 
@@ -15,7 +15,7 @@ FINALKERNEL="/home/slim80/Scrivania/Kernel/LG/Imperium/Final_Kernel"
 IMAGE="/home/slim80/Scrivania/Kernel/LG/Imperium/Imperium_Kernel_H815/arch/arm64/boot"
 ANYKERNEL="/home/slim80/Scrivania/Kernel/LG/Imperium/Imperium_Kernel_H815/AnyKernel"
 NUM_CPUS=`grep -c ^processor /proc/cpuinfo`
-VERSION=7.0
+VERSION=7.1
 
 rm -f arch/arm64/boot/*.cmd
 rm -f arch/arm64/boot/dts/*.cmd
