@@ -25,7 +25,7 @@ find -name '*.ko' -exec rm -rf {} \;
 rm -f dt.img
 rm -f $BUILDKERNEL/boot.img
 rm -f $BUILDKERNEL/system/lib/modules/*
-rm -f $RAMFS/ramfs_imperium_H815.cpio.gz
+rm -f $KERNELDIR/ramfs_imperium_H815.cpio.gz
 
 make clean
 make distclean

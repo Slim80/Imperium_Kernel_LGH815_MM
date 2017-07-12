@@ -44,8 +44,7 @@ echo $DTBVERCMD
 sh ./fix_ramfs_permissions_H815.sh
 
 cd $RAMFS
-find . | cpio -H newc -o | gzip > $RAMFS/ramfs_imperium_H815.cpio.gz
-mv ramfs_imperium_H815.cpio.gz $KERNELDIR/ramfs_imperium_H815.cpio.gz
+find . | cpio -H newc -o | gzip > $KERNELDIR/ramfs_imperium_H815.cpio.gz
 cd $KERNELDIR
 
 ./scripts/mkbootimg --kernel $IMAGE/Image --ramdisk $KERNELDIR/ramfs_imperium_H815.cpio.gz --base 0x00000000 --pagesize 4096 --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --second_offset 0x00f00000 --hash sha1 --cmdline 'console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 user_debug=31 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.selinux=permissive msm_rtb.filter=0x37 androidboot.hardware=p1' --dt dt.img -o $BUILDKERNEL/boot.img
