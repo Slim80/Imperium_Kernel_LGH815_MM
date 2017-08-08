@@ -15,7 +15,7 @@ FINALKERNEL="/home/slim80/Scrivania/Kernel/LG/Imperium/Final_Kernel"
 IMAGE="/home/slim80/Scrivania/Kernel/LG/Imperium/Imperium_Kernel_H815/arch/arm64/boot"
 RAMFS="/home/slim80/Scrivania/Kernel/LG/Imperium/ramfs_imperium_H815"
 NUM_CPUS=`grep -c ^processor /proc/cpuinfo`
-VERSION=7.3
+VERSION=7.3a
 
 rm -f arch/arm64/boot/*.cmd
 rm -f arch/arm64/boot/dts/*.cmd
